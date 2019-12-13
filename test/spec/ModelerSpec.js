@@ -23,7 +23,13 @@ describe('Modeler', function() {
   var modeler;
 
   beforeEach(function() {
-    container = TestContainer.get(this);
+    container = document.createElement('div');
+
+    container.classList.add('container');
+
+    // container = TestContainer.get(this);
+    
+    document.body.appendChild(container);
   });
 
   function createModeler(xml, done) {
