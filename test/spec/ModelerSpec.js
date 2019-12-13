@@ -13,6 +13,8 @@ import {
   clearBpmnJS
 } from 'test/TestHelper';
 
+import NativeClipboardModule from 'lib/features/native-clipboard';
+
 
 describe('Modeler', function() {
 
@@ -32,7 +34,10 @@ describe('Modeler', function() {
       container: container,
       keyboard: {
         bindTo: document
-      }
+      },
+      additionalModules: [
+        NativeClipboardModule
+      ]
     });
 
     setBpmnJS(modeler);
