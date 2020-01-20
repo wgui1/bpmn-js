@@ -65,6 +65,8 @@ export default function(chai, utils) {
 
     expect(bo).to.have.property('di');
 
+    expect(bo.di).to.have.property('waypoint');
+
     assertWaypoints(this, obj.id + '#di#waypoint', getPoints(bo.di.waypoint), getPoints(exp));
   });
 
@@ -138,27 +140,9 @@ export default function(chai, utils) {
 
   // helpers ////////////////
 
-  function pointsMatch(waypoints, expectedWaypoints) {
-    if (waypoints.length !== expectedWaypoints.length) {
-      return false;
-    }
-
-    return expectedWaypoints.every(function(expected, index) {
-
-      var actual = waypoints[index];
-
-      if (!expected.original) {
-        actual = getPoint(actual);
-      }
-
-      return utils.eql(expected, actual);
-    });
-
-  }
-
   function assertWaypoints(self, desc, waypoints, expectedWaypoints) {
 
-    var matches = pointsMatch(waypoints, expectedWaypoints);
+    var matches = utils.eql(waypoints, expectedWaypoints);
 
     var waypointsStr = inspect(waypoints),
         expectedWaypointsStr = inspect(expectedWaypoints);
